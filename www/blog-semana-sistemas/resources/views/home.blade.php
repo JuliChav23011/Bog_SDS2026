@@ -20,10 +20,37 @@
             <a href="#actividades">Actividades</a>
             <a href="#nosotros">Nosotros</a>
         </nav>
+    @auth
+        <div class="nav-usuario">
 
+            <span class="nombre-usuario">
+                Hola, {{ auth()->user()->name }}
+            </span>
+
+            <a href="{{ route('public.index') }}" class="btn-login">
+                Ver publicaciones
+            </a>
+
+            @if(auth()->user()->isAdmin())
+                <a href="{{ route('admin.dashboard') }}" class="btn-login">
+                    Panel administrador
+                </a>
+            @endif
+
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="btn-cerrar">
+                    Cerrar sesión
+                </button>
+            </form>
+
+        </div>
+    @else
         <a href="{{ route('login') }}" class="btn-login">
             Iniciar sesión
         </a>
+    @endauth
+
     </header>
 
     <main>

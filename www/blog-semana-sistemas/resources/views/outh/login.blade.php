@@ -17,7 +17,7 @@
             <h1>Bienvenido de nuevo</h1>
             <p>Ingresa para administrar el blog.</p>
 
-            <form action="{{ route('login.procesar') }}" method="POST">
+            <form action="{{route('login.procesar') }}" method="POST">
                 @csrf
 
                 <div class="form-group">

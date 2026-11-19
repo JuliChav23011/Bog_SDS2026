@@ -1,0 +1,407 @@
+body {
+    background: #f4f7fb;
+    color: #1e293b;
+    font-family: Arial, sans-serif;
+}
+
+.encabezado {
+    background: #0f172a;
+    padding: 18px 0;
+    color: white;
+}
+
+.logo {
+    color: white;
+    text-decoration: none;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #38bdf8;
+}
+
+.btn-salir {
+    background: #ef4444;
+    border: none;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 7px;
+}
+
+/* CARRUSEL DE TARJETAS */
+
+.seccion-actividades {
+    margin-top: 45px;
+}
+
+.carrusel-contenedor {
+    position: relative;
+    padding: 10px 48px;
+}
+
+.carrusel-ventana {
+    overflow: hidden;
+}
+
+.carrusel-pista {
+    display: flex;
+    gap: 20px;
+    transition: transform .4s ease;
+}
+
+.tarjeta {
+    flex: 0 0 calc((100% - 40px) / 3);
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,.08);
+}
+
+.tarjeta-imagen {
+    height: 145px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 60px;
+}
+
+.tarjeta-contenido {
+    padding: 22px;
+}
+
+.tarjeta h3 {
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.tarjeta p {
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.6;
+    min-height: 68px;
+}
+
+.btn-explorar {
+    background: #0284c7;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 16px;
+    border-radius: 7px;
+}
+
+.btn-explorar:hover {
+    background: #0369a1;
+    color: white;
+}
+
+.flecha {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: #0f172a;
+    color: white;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.flecha:disabled {
+    opacity: .3;
+    cursor: not-allowed;
+}
+
+.flecha-izquierda {
+    left: 0;
+}
+
+.flecha-derecha {
+    right: 0;
+}
+
+.contador {
+    text-align: center;
+    color: #64748b;
+    font-size: 14px;
+    margin-top: 12px;
+}
+
+/* INTRODUCCIÓN */
+
+.introduccion {
+    margin-top: 65px;
+    margin-bottom: 35px;
+}
+
+.introduccion h1 {
+    color: #102238;
+    font-size: 35px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.introduccion p,
+.informacion p {
+    color: #64748b;
+    line-height: 1.9;
+    font-size: 16px;
+}
+
+.informacion {
+    background: white;
+    border-radius: 14px;
+    padding: 35px;
+    margin-bottom: 60px;
+}
+
+footer {
+    background: #0f172a;
+    color: #cbd5e1;
+    text-align: center;
+    padding: 25px;
+}
+
+@media (max-width: 991px) {
+    .tarjeta {
+        flex-basis: calc((100% - 20px) / 2);
+    }
+}
+
+@media (max-width: 600px) {
+    .tarjeta {
+        flex-basis: 100%;
+    }
+
+    .carrusel-contenedor {
+        padding: 10px 38px;
+    }
+
+    .introduccion h1 {
+        font-size: 28px;
+    }
+}
+
+/* CRÓNICA DE INAUGURACIÓN */
+
+.cronica-inauguracion {
+    margin-top: 65px;
+    margin-bottom: 70px;
+}
+
+/* Portada principal */
+
+.portada-inauguracion {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    min-height: 420px;
+    background: #0f172a;
+}
+
+.foto-principal {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    display: block;
+}
+
+.portada-texto {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 45px;
+    color: white;
+    background: linear-gradient(
+        to top,
+        rgba(15, 23, 42, .92),
+        rgba(15, 23, 42, .05)
+    );
+}
+
+.portada-texto span {
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.portada-texto h1 {
+    font-size: clamp(28px, 4vw, 45px);
+    font-weight: 800;
+    max-width: 780px;
+}
+
+.portada-texto p {
+    font-size: 17px;
+    margin-top: 10px;
+}
+
+/* Texto introductorio */
+
+.texto-inauguracion {
+    max-width: 900px;
+    margin: 55px auto;
+}
+
+.texto-inauguracion h2 {
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 25px;
+    color: #102238;
+}
+
+.texto-inauguracion p {
+    font-size: 17px;
+    line-height: 1.9;
+    color: #475569;
+    margin-bottom: 18px;
+}
+
+/* Título mesa de honor */
+
+.titulo-mesa {
+    margin: 65px 0 35px;
+    text-align: center;
+}
+
+.titulo-mesa span {
+    color: #0f766e;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.titulo-mesa h2 {
+    margin-top: 12px;
+    font-size: 32px;
+    font-weight: 800;
+    color: #102238;
+}
+
+.titulo-mesa p {
+    color: #64748b;
+}
+
+/* Filas de intervenciones */
+
+.intervencion {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 45px;
+    align-items: center;
+    background: white;
+    border-radius: 15px;
+    padding: 35px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 18px rgba(0,0,0,.05);
+}
+
+.numero-intervencion {
+    color: #0284c7;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.intervencion-texto h3 {
+    font-size: 25px;
+    font-weight: 800;
+    margin-top: 12px;
+    color: #102238;
+}
+
+.intervencion-texto .cargo {
+    color: #0f766e;
+    font-weight: 600;
+    margin-bottom: 22px;
+}
+
+.intervencion-texto p {
+    font-size: 16px;
+    line-height: 1.85;
+    color: #475569;
+}
+
+.intervencion-imagen img {
+    width: 100%;
+    height: 310px;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+}
+
+/* Adaptación para celulares */
+
+@media (max-width: 768px) {
+    .portada-inauguracion,
+    .foto-principal {
+        min-height: 350px;
+        height: 350px;
+    }
+
+    .portada-texto {
+        padding: 25px;
+    }
+
+    .intervencion {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 22px;
+    }
+
+    .intervencion-imagen img {
+        height: 250px;
+    }
+
+    .titulo-mesa h2 {
+        font-size: 27px;
+    }
+}
+
+/* DISTRIBUCIÓN INTERCALADA DE LA MESA DE HONOR */
+
+/* Primera y tercera: fotografía izquierda, texto derecha */
+.intervencion.imagen-izquierda .intervencion-imagen {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.intervencion.imagen-izquierda .intervencion-texto {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+/* Segunda: texto izquierda, fotografía derecha */
+.intervencion.imagen-derecha .intervencion-texto {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.intervencion.imagen-derecha .intervencion-imagen {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+/* En celulares: imagen arriba y texto debajo */
+@media (max-width: 768px) {
+    .intervencion.imagen-izquierda .intervencion-imagen,
+    .intervencion.imagen-derecha .intervencion-imagen {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .intervencion.imagen-izquierda .intervencion-texto,
+    .intervencion.imagen-derecha .intervencion-texto {
+        grid-column: 1;
+        grid-row: 2;
+    }
+}
+

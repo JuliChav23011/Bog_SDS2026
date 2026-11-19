@@ -364,3 +364,49 @@ footer {
     .activities-grid { grid-template-columns: 1fr; }
     .auth-card { padding: 28px 22px; }
 }
+
+
+/* Opciones de usuario en el navbar */
+
+.nav-usuario {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.nombre-usuario {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.nav-usuario form {
+    margin: 0;
+}
+
+.btn-cerrar {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 11px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-cerrar:hover {
+    background: #b91c1c;
+}
+
+@media (max-width: 768px) {
+    .nav-usuario {
+        gap: 8px;
+    }
+
+    .nombre-usuario {
+        width: 100%;
+    }
+}

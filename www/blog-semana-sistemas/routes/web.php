@@ -35,8 +35,8 @@ Route::middleware('auth')->group(function () {
 
     // Publicaciones
     Route::get('/publicaciones', function () {
-        return view('publicaciones.index');
-    })->name('publicaciones.index');
+        return view('public.index');
+    })->name('public.index');
 
     // Panel administrativo
     Route::get('/admin', function () {

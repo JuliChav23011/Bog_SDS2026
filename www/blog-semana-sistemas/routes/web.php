@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\CategoriaController;
+use App\Http\Controllers\Admin\PublicacionController;
 
 // Página principal
 Route::get('/', function () {
@@ -47,3 +50,36 @@ Route::middleware('auth')->group(function () {
 
     })->name('admin.dashboard');
 });
+
+Route::middleware(['auth', 'admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    });
+
+Route::middleware(['auth', 'admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+        Route::resource('categorias', CategoriaController::class)
+            ->except(['show'])
+            ->parameters(['categorias' => 'categoria']);
+    });
+
+Route::middleware(['auth', 'admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+        Route::resource('categorias', CategoriaController::class)
+            ->except(['show'])
+            ->parameters(['categorias' => 'categoria']);
+
+        Route::resource('publicaciones', PublicacionController::class)
+            ->except(['show'])
+            ->parameters(['publicaciones' => 'publicacion']);
+    });

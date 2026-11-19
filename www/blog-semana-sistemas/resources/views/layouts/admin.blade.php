@@ -22,7 +22,7 @@
                 <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                     Dashboard
                 </a>
-                <a href="{{ route('home') }}" class="nav-link" target="_blank">
+                <a href="{{ route('public.index') }}" class="nav-link" target="_blank">
                     Ver blog público
                 </a>
 

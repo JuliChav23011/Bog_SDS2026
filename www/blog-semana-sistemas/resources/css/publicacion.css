@@ -1,38 +1,86 @@
-body {
-    background: #f4f7fb;
-    color: #1e293b;
-    font-family: Arial, sans-serif;
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --azul: #123c73;
+    --azul-oscuro: #0a2851;
+    --celeste: #38bdf8;
+    --celeste-suave: #e0f2fe;
+    --verde: #16a34a;
+    --verde-hover: #11813b;
+    --verde-suave: #dcfce7;
+    --blanco: #ffffff;
+    --fondo: #f4f9fc;
+    --texto: #24354b;
+    --texto-suave: #64748b;
+    --borde: #e4edf4;
+    --peligro: #dc2626;
 }
 
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--fondo);
+    color: var(--texto);
+    font-family: 'DM Sans', Arial, sans-serif;
+}
+
+/* ENCABEZADO */
+
 .encabezado {
-    background: #0f172a;
-    padding: 18px 0;
-    color: white;
+    background: linear-gradient(
+        165deg,
+        var(--azul-oscuro) 0%,
+        #135c89 75%,
+        #178d89 100%
+    );
+    padding: 20px 0;
+    color: var(--blanco);
+    box-shadow: 0 4px 20px rgba(18, 60, 115, .12);
 }
 
 .logo {
-    color: white;
+    color: var(--blanco);
     text-decoration: none;
-    font-size: 21px;
-    font-weight: bold;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -.5px;
+}
+
+.logo:hover {
+    color: var(--blanco);
 }
 
 .logo span {
-    color: #38bdf8;
+    color: var(--celeste);
 }
 
 .btn-salir {
-    background: #ef4444;
-    border: none;
-    color: white;
-    padding: 10px 16px;
-    border-radius: 7px;
+    background: var(--azul);
+    border: 1px solid var(--celeste);
+    color: var(--blanco);
+    padding: 10px 18px;
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .2s ease;
 }
 
-/* CARRUSEL DE TARJETAS */
+.btn-salir:hover {
+    background: var(--azul-oscuro);
+    border-color: var(--celeste);
+    color: var(--blanco);
+    transform: translateY(-2px);
+}
+/* CARRUSEL DE ACTIVIDADES */
 
 .seccion-actividades {
-    margin-top: 45px;
+    margin-top: 55px;
 }
 
 .carrusel-contenedor {
@@ -52,49 +100,78 @@ body {
 
 .tarjeta {
     flex: 0 0 calc((100% - 40px) / 3);
-    background: white;
-    border-radius: 14px;
+    min-width: 0;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,.08);
+    box-shadow: 0 5px 20px rgba(18, 60, 115, .06);
+    transition: box-shadow .25s, border-color .25s;
+}
+
+.tarjeta:hover {
+    border-color: var(--celeste);
+    box-shadow: 0 10px 28px rgba(18, 60, 115, .12);
 }
 
 .tarjeta-imagen {
-    height: 145px;
+    height: 160px;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 60px;
+    color: var(--azul);
+    background: linear-gradient(
+        135deg,
+        var(--celeste-suave),
+        var(--verde-suave)
+    );
+    overflow: hidden;
+}
+
+.tarjeta-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
 }
 
 .tarjeta-contenido {
-    padding: 22px;
+    padding: 24px;
 }
 
 .tarjeta h3 {
     font-size: 19px;
-    font-weight: bold;
+    font-weight: 800;
+    color: var(--azul-oscuro);
     margin-bottom: 12px;
 }
 
 .tarjeta p {
     font-size: 14px;
-    color: #64748b;
-    line-height: 1.6;
+    color: var(--texto-suave);
+    line-height: 1.7;
     min-height: 68px;
 }
 
 .btn-explorar {
-    background: #0284c7;
-    color: white;
+    background: var(--verde);
+    color: var(--blanco);
     text-decoration: none;
     display: inline-block;
-    padding: 10px 16px;
-    border-radius: 7px;
+    padding: 11px 18px;
+    border-radius: 9px;
+    font-weight: 700;
+    font-size: 14px;
+    transition: .2s;
 }
 
 .btn-explorar:hover {
-    background: #0369a1;
-    color: white;
+    background: var(--verde-hover);
+    color: var(--blanco);
+    transform: translateY(-2px);
 }
 
 .flecha {
@@ -102,14 +179,20 @@ body {
     top: 50%;
     transform: translateY(-50%);
     border: none;
-    background: #0f172a;
-    color: white;
-    width: 38px;
-    height: 38px;
+    background: var(--azul);
+    color: var(--blanco);
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     font-size: 24px;
     cursor: pointer;
     z-index: 2;
+    box-shadow: 0 4px 12px rgba(18, 60, 115, .18);
+    transition: background .2s;
+}
+
+.flecha:hover:not(:disabled) {
+    background: var(--verde);
 }
 
 .flecha:disabled {
@@ -127,9 +210,10 @@ body {
 
 .contador {
     text-align: center;
-    color: #64748b;
+    color: var(--texto-suave);
     font-size: 14px;
-    margin-top: 12px;
+    margin-top: 15px;
+    font-weight: 600;
 }
 
 /* INTRODUCCIÓN */
@@ -140,36 +224,305 @@ body {
 }
 
 .introduccion h1 {
-    color: #102238;
-    font-size: 35px;
+    color: var(--azul-oscuro);
+    font-size: 36px;
     font-weight: 800;
     margin-bottom: 20px;
+    letter-spacing: -.7px;
 }
 
 .introduccion p,
 .informacion p {
-    color: #64748b;
+    color: var(--texto-suave);
     line-height: 1.9;
     font-size: 16px;
 }
 
 .informacion {
-    background: white;
-    border-radius: 14px;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-left: 5px solid var(--verde);
+    border-radius: 16px;
     padding: 35px;
     margin-bottom: 60px;
+    box-shadow: 0 5px 20px rgba(18, 60, 115, .05);
 }
 
+/* PIE DE PÁGINA */
+
 footer {
-    background: #0f172a;
-    color: #cbd5e1;
+    background: linear-gradient(
+        135deg,
+        var(--azul-oscuro),
+        var(--azul)
+    );
+    color: #d6ebf4;
     text-align: center;
-    padding: 25px;
+    padding: 30px 20px;
 }
+
+/* CRÓNICA DE INAUGURACIÓN */
+
+.cronica-inauguracion {
+    margin-top: 65px;
+    margin-bottom: 70px;
+}
+
+/* PORTADA PRINCIPAL */
+
+.portada-inauguracion {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    height: 420px;
+    background: var(--azul-oscuro);
+    box-shadow: 0 12px 35px rgba(18, 60, 115, .12);
+}
+
+.foto-principal {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.portada-texto {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 45px;
+    color: var(--blanco);
+    background: linear-gradient(
+        to top,
+        rgba(10, 40, 81, .95),
+        rgba(18, 60, 115, .25),
+        transparent
+    );
+}
+
+.portada-texto span {
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: #9ff3c5;
+    text-transform: uppercase;
+}
+
+.portada-texto h1 {
+    font-size: clamp(28px, 4vw, 45px);
+    font-weight: 800;
+    max-width: 780px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.portada-texto p {
+    font-size: 17px;
+    margin-top: 12px;
+    color: #e0f2fe;
+}
+
+/* TEXTO INTRODUCTORIO */
+
+.texto-inauguracion {
+    max-width: 900px;
+    margin: 55px auto;
+}
+
+.texto-inauguracion h2 {
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 25px;
+    color: var(--azul-oscuro);
+}
+
+.texto-inauguracion p {
+    font-size: 17px;
+    line-height: 1.9;
+    color: var(--texto);
+    margin-bottom: 18px;
+}
+
+/* TÍTULO MESA DE HONOR */
+
+.titulo-mesa {
+    margin: 65px 0 35px;
+    text-align: center;
+}
+
+.titulo-mesa span {
+    color: var(--verde);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.titulo-mesa h2 {
+    margin-top: 12px;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--azul-oscuro);
+}
+
+.titulo-mesa p {
+    color: var(--texto-suave);
+    line-height: 1.7;
+}
+
+/* FILAS DE INTERVENCIONES */
+
+.intervencion {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px;
+    align-items: center;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: 18px;
+    padding: 35px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 20px rgba(18, 60, 115, .05);
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.intervencion:hover {
+    border-color: var(--celeste);
+    box-shadow: 0 10px 30px rgba(18, 60, 115, .09);
+}
+
+.intervencion-texto,
+.intervencion-imagen {
+    min-width: 0;
+}
+
+.numero-intervencion {
+    display: inline-block;
+    color: var(--verde);
+    background: var(--verde-suave);
+    padding: 7px 13px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.intervencion-texto h3 {
+    font-size: 25px;
+    font-weight: 800;
+    margin-top: 15px;
+    color: var(--azul-oscuro);
+    line-height: 1.3;
+}
+
+.intervencion-texto .cargo {
+    color: var(--azul);
+    font-weight: 700;
+    margin-bottom: 22px;
+}
+
+.intervencion-texto p {
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--texto-suave);
+}
+
+/* FOTOGRAFÍAS UNIFORMES */
+
+.intervencion-imagen {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 13px;
+    background: var(--celeste-suave);
+}
+
+.intervencion-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* ALTERNANCIA DE FOTOGRAFÍAS */
+
+.intervencion.imagen-izquierda .intervencion-imagen {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.intervencion.imagen-izquierda .intervencion-texto {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.intervencion.imagen-derecha .intervencion-texto {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.intervencion.imagen-derecha .intervencion-imagen {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+/* RESPONSIVE - TABLET */
 
 @media (max-width: 991px) {
     .tarjeta {
         flex-basis: calc((100% - 20px) / 2);
+    }
+
+    .intervencion {
+        gap: 25px;
+        padding: 25px;
+    }
+}
+
+/* RESPONSIVE - CELULARES */
+
+@media (max-width: 768px) {
+    .portada-inauguracion {
+        height: 350px;
+    }
+
+    .portada-texto {
+        padding: 25px;
+    }
+
+    .intervencion {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 22px;
+    }
+
+    .intervencion.imagen-izquierda .intervencion-imagen,
+    .intervencion.imagen-derecha .intervencion-imagen {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .intervencion.imagen-izquierda .intervencion-texto,
+    .intervencion.imagen-derecha .intervencion-texto {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .titulo-mesa h2 {
+        font-size: 27px;
+    }
+
+    .texto-inauguracion {
+        margin: 40px auto;
+    }
+
+    .texto-inauguracion h2 {
+        font-size: 26px;
     }
 }
 
@@ -185,223 +538,398 @@ footer {
     .introduccion h1 {
         font-size: 28px;
     }
+
+    .informacion {
+        padding: 24px;
+    }
+
+    .portada-inauguracion {
+        height: 320px;
+    }
+
+    .portada-texto h1 {
+        font-size: 26px;
+    }
+
+    .portada-texto p {
+        font-size: 14px;
+    }
+
+    .intervencion-texto h3 {
+        font-size: 22px;
+    }
 }
 
-/* CRÓNICA DE INAUGURACIÓN */
 
-.cronica-inauguracion {
-    margin-top: 65px;
+/* ======================================
+   PONENCIAS - DISEÑO HORIZONTAL
+====================================== */
+
+.lista-ponencias {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
     margin-bottom: 70px;
 }
 
-/* Portada principal */
-
-.portada-inauguracion {
-    position: relative;
-    overflow: hidden;
-    border-radius: 16px;
-    min-height: 420px;
-    background: #0f172a;
+.ponencia-horizontal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+    align-items: center;
+    padding: 28px;
+    background: #ffffff;
+    border: 1px solid #e4edf4;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(18, 60, 115, 0.07);
 }
 
-.foto-principal {
-    width: 100%;
-    height: 420px;
-    object-fit: cover;
+/* Alternar fotografías y texto */
+.ponencia-invertida .ponencia-galeria {
+    order: 2;
+}
+
+.ponencia-invertida .ponencia-informacion {
+    order: 1;
+}
+
+/* Galería de fotografías */
+.ponencia-galeria {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 135px;
+    gap: 10px;
+    min-width: 0;
+}
+
+/* Fotografías individuales */
+.ponencia-foto {
     display: block;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #e0f2fe;
 }
 
-.portada-texto {
-    position: absolute;
-    inset: 0;
+/* Primera fotografía más destacada */
+.ponencia-foto:first-child {
+    grid-column: 1 / -1;
+    grid-row: span 2;
+}
+
+.ponencia-foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.ponencia-foto:hover img {
+    transform: scale(1.05);
+}
+
+/* Sin fotografías */
+.ponencia-sin-foto {
+    grid-column: 1 / -1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    padding: 45px;
-    color: white;
-    background: linear-gradient(
-        to top,
-        rgba(15, 23, 42, .92),
-        rgba(15, 23, 42, .05)
-    );
+    justify-content: center;
+    align-items: center;
+    min-height: 250px;
+    background: #e0f2fe;
+    border-radius: 14px;
+    font-size: 45px;
+    color: #123c73;
 }
 
-.portada-texto span {
-    font-size: 13px;
-    letter-spacing: 2px;
-    font-weight: 700;
-    margin-bottom: 12px;
-}
-
-.portada-texto h1 {
-    font-size: clamp(28px, 4vw, 45px);
-    font-weight: 800;
-    max-width: 780px;
-}
-
-.portada-texto p {
-    font-size: 17px;
+.ponencia-sin-foto span {
+    font-size: 15px;
     margin-top: 10px;
 }
 
-/* Texto introductorio */
-
-.texto-inauguracion {
-    max-width: 900px;
-    margin: 55px auto;
+/* Información */
+.ponencia-informacion {
+    min-width: 0;
 }
 
-.texto-inauguracion h2 {
-    font-size: 30px;
+.ponencia-etiqueta {
+    color: #16a34a;
+    font-size: 12px;
     font-weight: 800;
-    margin-bottom: 25px;
-    color: #102238;
+    letter-spacing: 1.5px;
 }
 
-.texto-inauguracion p {
-    font-size: 17px;
-    line-height: 1.9;
-    color: #475569;
-    margin-bottom: 18px;
-}
-
-/* Título mesa de honor */
-
-.titulo-mesa {
-    margin: 65px 0 35px;
-    text-align: center;
-}
-
-.titulo-mesa span {
-    color: #0f766e;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 2px;
-}
-
-.titulo-mesa h2 {
-    margin-top: 12px;
-    font-size: 32px;
+.ponencia-informacion h2 {
+    color: #0a2851;
+    font-size: 28px;
     font-weight: 800;
-    color: #102238;
+    margin: 15px 0;
 }
 
-.titulo-mesa p {
+.ponencia-fecha {
     color: #64748b;
+    font-size: 14px;
 }
 
-/* Filas de intervenciones */
-
-.intervencion {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 45px;
-    align-items: center;
-    background: white;
-    border-radius: 15px;
-    padding: 35px;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 18px rgba(0,0,0,.05);
-}
-
-.numero-intervencion {
-    color: #0284c7;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
-
-.intervencion-texto h3 {
-    font-size: 25px;
-    font-weight: 800;
-    margin-top: 12px;
-    color: #102238;
-}
-
-.intervencion-texto .cargo {
-    color: #0f766e;
+.ponencia-resumen {
+    color: #123c73;
     font-weight: 600;
-    margin-bottom: 22px;
+    margin-top: 20px;
 }
 
-.intervencion-texto p {
-    font-size: 16px;
-    line-height: 1.85;
+.ponencia-contenido {
     color: #475569;
+    font-size: 15px;
+    line-height: 1.9;
+    overflow-wrap: anywhere;
 }
 
-.intervencion-imagen img {
-    width: 100%;
-    height: 310px;
-    object-fit: cover;
-    border-radius: 12px;
-    display: block;
+.ponencia-autores {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #e4edf4;
+    color: #24354b;
 }
 
-/* Adaptación para celulares */
-
+/* Adaptación a celulares */
 @media (max-width: 768px) {
-    .portada-inauguracion,
-    .foto-principal {
-        min-height: 350px;
-        height: 350px;
-    }
 
-    .portada-texto {
-        padding: 25px;
-    }
-
-    .intervencion {
+    .ponencia-horizontal {
         grid-template-columns: 1fr;
-        gap: 25px;
-        padding: 22px;
+        gap: 20px;
+        padding: 18px;
     }
 
-    .intervencion-imagen img {
-        height: 250px;
+    .ponencia-invertida .ponencia-galeria,
+    .ponencia-invertida .ponencia-informacion {
+        order: initial;
     }
 
-    .titulo-mesa h2 {
-        font-size: 27px;
+    .ponencia-galeria {
+        grid-auto-rows: 110px;
+    }
+
+    .ponencia-informacion h2 {
+        font-size: 23px;
+    }
+}
+.btn-contribuidores {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background: #0f766e;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-weight: 600;
+}
+.btn-contribuidores:hover { background: #115e59; color: #fff; }
+
+
+        .contribuidores-hero {
+            background: linear-gradient(
+                135deg,
+                #071e32 0%,
+                #064e3b 55%,
+                #087f8c 100%
+            );
+            color: white;
+            padding: 85px 20px;
+            text-align: center;
+            border-radius: 0 0 35px 35px;
+        }
+
+        .contribuidores-hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .contribuidores-hero p {
+            max-width: 750px;
+            margin: auto;
+            font-size: 1.1rem;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .hero-etiqueta {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 30px;
+            margin-bottom: 22px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+        }
+
+        /* SECCIÓN DE GALERÍA */
+
+        .galeria-contribuidores {
+            padding: 70px 0;
+        }
+
+        .titulo-seccion {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .titulo-seccion h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #12334a;
+        }
+
+        .titulo-seccion p {
+            color: #64748b;
+            max-width: 650px;
+            margin: 12px auto 0;
+        }
+
+        /* TARJETAS FOTOGRÁFICAS */
+
+        
+/* GALERÍA DE CONTRIBUIDORES */
+
+.galeria-contribuidores .row {
+    justify-content: center;
+}
+
+.foto-card,
+.foto-card.foto-grande {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    height: 340px;
+    min-height: 0;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 16px;
+    background: #e9eef2;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.foto-card:hover {
+    transform: translateY(-5px);
+}
+
+.foto-card img,
+.foto-card.foto-grande img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: contain;
+    object-position: center;
+    transition: none;
+}
+
+.foto-card:hover img {
+    transform: none;
+}
+
+/* DESCRIPCIÓN */
+
+.foto-overlay {
+    position: absolute;
+    inset: auto 0 0;
+    padding: 28px 15px 12px;
+    background: linear-gradient(
+        transparent,
+        rgba(0, 0, 0, 0.78)
+    );
+    color: white;
+}
+
+.foto-overlay h3 {
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+.foto-overlay p {
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+/* CELULARES */
+
+@media (max-width: 576px) {
+    .foto-card,
+    .foto-card.foto-grande {
+        max-width: 280px;
+        height: 320px;
     }
 }
 
-/* DISTRIBUCIÓN INTERCALADA DE LA MESA DE HONOR */
+        /* MENSAJE DE RECONOCIMIENTO */
 
-/* Primera y tercera: fotografía izquierda, texto derecha */
-.intervencion.imagen-izquierda .intervencion-imagen {
-    grid-column: 1;
-    grid-row: 1;
-}
+        .reconocimiento {
+            background: #f1f5f9;
+            border-radius: 24px;
+            padding: 45px 35px;
+            text-align: center;
+            margin: 20px 0 70px;
+        }
 
-.intervencion.imagen-izquierda .intervencion-texto {
-    grid-column: 2;
-    grid-row: 1;
-}
+        .reconocimiento h2 {
+            font-weight: 800;
+            color: #064e3b;
+            margin-bottom: 18px;
+        }
 
-/* Segunda: texto izquierda, fotografía derecha */
-.intervencion.imagen-derecha .intervencion-texto {
-    grid-column: 1;
-    grid-row: 1;
-}
+        .reconocimiento p {
+            color: #475569;
+            max-width: 800px;
+            margin: auto;
+            line-height: 1.9;
+        }
 
-.intervencion.imagen-derecha .intervencion-imagen {
-    grid-column: 2;
-    grid-row: 1;
-}
+        /* BOTÓN VOLVER */
 
-/* En celulares: imagen arriba y texto debajo */
-@media (max-width: 768px) {
-    .intervencion.imagen-izquierda .intervencion-imagen,
-    .intervencion.imagen-derecha .intervencion-imagen {
-        grid-column: 1;
-        grid-row: 1;
-    }
+        .btn-volver-contribuidores {
+            display: inline-block;
+            background: #087f5b;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
 
-    .intervencion.imagen-izquierda .intervencion-texto,
-    .intervencion.imagen-derecha .intervencion-texto {
-        grid-column: 1;
-        grid-row: 2;
-    }
-}
+        .btn-volver-contribuidores:hover {
+            background: #065f46;
+            color: white;
+        }
 
+        /* MODAL DE FOTOGRAFÍAS */
+
+        .modal-foto {
+            max-width: 100%;
+            max-height: 78vh;
+            object-fit: contain;
+        }
+
+        @media (max-width: 768px) {
+            .contribuidores-hero {
+                padding: 60px 18px;
+            }
+
+            .galeria-contribuidores {
+                padding: 45px 0;
+            }
+
+            .foto-grande,
+            .foto-grande img {
+                min-height: 270px;
+            }
+
+            .reconocimiento {
+                padding: 30px 20px;
+            }
+        }

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -25,6 +24,8 @@
         <div class="d-flex align-items-center gap-3 flex-wrap">
             <span>{{ auth()->user()->name }}</span>
 
+            <a href="{{ route('contribuidores.index') }}" class="btn-salir btn-contribuidores">Contribuidores</a>
+
             <form action="{{ route('logout') }}" method="POST">
                 @csrf
                 <button type="submit" class="btn-salir">
@@ -36,50 +37,21 @@
     </div>
 </header>
 
+
 @php
-    $actividades = [
-        [
-            'nombre' => 'Ponencias',
-            'icono' => '🎤',
-            'descripcion' => 'Conoce las ponencias y los temas tecnológicos.',
-            'color' => '#e0f2fe'
-        ],
-        [
-            'nombre' => 'Talleres',
-            'icono' => '💻',
-            'descripcion' => 'Descubre los talleres realizados durante la semana.',
-            'color' => '#d1fae5'
-        ],
-        [
-            'nombre' => 'Bingo',
-            'icono' => '🎲',
-            'descripcion' => 'Revive los momentos del bingo.',
-            'color' => '#f3e8ff'
-        ],
-        [
-            'nombre' => 'Feria de proyectos',
-            'icono' => '🚀',
-            'descripcion' => 'Explora los proyectos presentados por los estudiantes.',
-            'color' => '#e0f2fe'
-        ],
-        [
-            'nombre' => 'Comelona de pizza',
-            'icono' => '🍕',
-            'descripcion' => 'Conoce esta actividad de convivencia.',
-            'color' => '#ffedd5'
-        ],
-        [
-            'nombre' => 'Torneo de fútbol sala',
-            'icono' => '⚽',
-            'descripcion' => 'Descubre los encuentros deportivos.',
-            'color' => '#dcfce7'
-        ],
-        [
-            'nombre' => 'Parrillada',
-            'icono' => '🔥',
-            'descripcion' => 'Mira los momentos de la parrillada.',
-            'color' => '#fee2e2'
-        ]
+    // Categorías reales de PostgreSQL: cualquier categoría nueva aparece aquí.
+    $categorias = \App\Models\Categoria::orderBy('id')->get();
+
+    // Apariencia de categorías conocidas; las futuras reciben un estilo por defecto.
+    $estilos = [
+        'ponencia' => ['icono' => '🎤', 'color' => '#e0f2fe', 'ruta' => 'public.ponencias'],
+        'talleres' => ['icono' => '💻', 'color' => '#d1fae5', 'ruta' => 'public.talleres'],
+        'bingo' => ['icono' => '🎲', 'color' => '#f3e8ff', 'ruta' => 'public.bingo'],
+        'expo-system' => ['icono' => '🚀', 'color' => '#e0f2fe', 'ruta' => 'public.expo-system'],
+        'pizza' => ['icono' => '🍕', 'color' => '#ffedd5', 'ruta' => 'public.pizza'],
+        'futsal' => ['icono' => '⚽', 'color' => '#dcfce7', 'ruta' => 'public.futsal'],
+        'parrillada' => ['icono' => '🔥', 'color' => '#fee2e2', 'ruta' => 'public.parrillada'],
+        'actividades-extras' => ['icono' => '✨', 'color' => '#ede9fe', 'ruta' => null],
     ];
 @endphp
 
@@ -105,23 +77,29 @@
 
                 <div class="carrusel-pista" id="pistaCarrusel">
 
-                    @foreach ($actividades as $actividad)
+                    @forelse ($categorias as $categoria)
+                        @php
+                            $estilo = $estilos[$categoria->slug] ?? ['icono' => '📌', 'color' => '#e2e8f0', 'ruta' => null];
+                            $url = $estilo['ruta'] && \Illuminate\Support\Facades\Route::has($estilo['ruta'])
+                                ? route($estilo['ruta'])
+                                : route('public.categoria', ['slug' => $categoria->slug]);
+                        @endphp
 
                         <article class="tarjeta">
 
                             <div class="tarjeta-imagen"
-                                 style="background: {{ $actividad['color'] }};">
-                                {{ $actividad['icono'] }}
+                                 style="background: {{ $estilo['color'] }};">
+                                {{ $estilo['icono'] }}
                             </div>
 
                             <div class="tarjeta-contenido">
 
-                                <h3>{{ $actividad['nombre'] }}</h3>
+                                <h3>{{ $categoria->nombre }}</h3>
 
-                                <p>{{ $actividad['descripcion'] }}</p>
+                                <p>{{ $categoria->descripcion ?: 'Descubre las publicaciones de esta actividad.' }}</p>
 
-                                <a href="#introduccion"
-                                   class="btn-explorar">
+                                <a href="{{ $url }}"
+                                    class="btn-explorar">
                                     Ver publicaciones
                                 </a>
 
@@ -129,7 +107,9 @@
 
                         </article>
 
-                    @endforeach
+                    @empty
+                        <p class="text-center w-100 py-4">Todavía no hay categorías registradas.</p>
+                    @endforelse
 
                 </div>
 
@@ -220,16 +200,9 @@
             </p>
 
             <p>
-                Aquí puedes escribir lo que expresó la primera
-                persona de la mesa de honor durante su intervención.
-                Puedes mencionar los temas que abordó y el mensaje
-                principal que dirigió a los estudiantes.
-            </p>
-
-            <p>
-                En este segundo párrafo puedes desarrollar otra
-                idea importante de su discurso o agregar una
-                reflexión sobre sus palabras.
+                El Ing. Castro nos hablo sobre lo especial que es para nosotros 
+                la semana de sistemas y lo escencial del estudio de la carrera de ingeneria de sistemas
+                informaticos
             </p>
         </div>
 
@@ -257,15 +230,8 @@
             </p>
 
             <p>
-                Aquí escribirás las palabras del segundo
-                participante, siguiendo el orden en que
-                intervino durante el acto inaugural.
-            </p>
-
-            <p>
-                Puedes agregar un segundo párrafo para explicar
-                los mensajes relacionados con la educación,
-                la tecnología y la formación profesional.
+                La Ing. Astrid nos hablo sobre la importancia de la tematica de GREEN IOT seleccionada para 
+                la semana de sistemas y como quedo maravillada sobre el tema 
             </p>
         </div>
 
@@ -290,19 +256,10 @@
             <h3>Dr. Norma Azucena Flores Retana</h3>
 
             <p class="cargo">
-                Vice decana de facultad
+                Vice decana de facultad Multidisiplinaria Oriental
             </p>
-
             <p>
-                Aquí irá el contenido de la tercera intervención.
-                Puedes resumir sus palabras o incorporar
-                fragmentos textuales si los tienes registrados.
-            </p>
-
-            <p>
-                Este espacio permite continuar la narración
-                de forma ordenada, manteniendo una fotografía
-                junto a cada intervención.
+                Hablo sobre que le gusta la fmo y como se alegra por los estudiates 
             </p>
         </div>
 
@@ -320,28 +277,20 @@
                 04 · Cuarta intervención
             </span>
 
-            <h3>Bairon Levi</h3>
+            <h3>Bairon Levi Gomez Velasquez</h3>
 
             <p class="cargo">
                 Presidente de la ASEIS
             </p>
 
             <p>
-                Aquí escribirás las palabras del segundo
-                participante, siguiendo el orden en que
-                intervino durante el acto inaugural.
-            </p>
-
-            <p>
-                Puedes agregar un segundo párrafo para explicar
-                los mensajes relacionados con la educación,
-                la tecnología y la formación profesional.
+               Dio gracias a las autoridades presente y dio la bienvenida e inicio a la semana de sistemas 2026
             </p>
         </div>
 
         <div class="intervencion-imagen">
             <img
-                src="{{ asset('img/inauguracion/foto.jpeg') }}"
+                src="{{ asset('img/inauguracion/foto7.jpeg') }}"
                 alt="Segunda intervención de la mesa de honor"
                 loading="lazy"
             >
@@ -378,7 +327,14 @@
         const visibles = tarjetasVisibles();
         const maximo = Math.max(0, tarjetas.length - visibles);
 
-        posicion = Math.min(posicion, maximo);
+        posicion = Math.max(0, Math.min(posicion, maximo));
+
+        if (tarjetas.length === 0) {
+            anterior.disabled = true;
+            siguiente.disabled = true;
+            contador.textContent = '0 categorías';
+            return;
+        }
 
         const anchoTarjeta = tarjetas[0].getBoundingClientRect().width;
         const espacio = parseFloat(getComputedStyle(pista).gap) || 0;
@@ -394,7 +350,7 @@
     }
 
     anterior.addEventListener('click', function () {
-        posicion--;
+        posicion = Math.max(0, posicion - 1);
         actualizarCarrusel();
     });
 
